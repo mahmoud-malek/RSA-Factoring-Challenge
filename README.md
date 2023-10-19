@@ -1,6 +1,6 @@
 # RSA Factoring Challenge
 
-This repository contains two scripts for the RSA Factoring Challenge. The challenge involves factorizing numbers as quickly as possible, with a particular focus on RSA numbers. The project was created by Julien Barbier and is designed to run on Standard Ubuntu 20.04 LTS.
+This repository contains two scripts for the RSA Factoring Challenge. The challenge involves factorizing numbers as quickly as possible, with a particular focus on RSA numbers.
 
 ## Table of Contents
 
@@ -8,7 +8,6 @@ This repository contains two scripts for the RSA Factoring Challenge. The challe
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Background Context
 
