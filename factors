@@ -2,21 +2,16 @@
 
 import sys
 
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
-
-def pollards_rho(n):
+def factorize(n):
     if n % 2 == 0:
-        return 2
-    x = 2; y = 2; d = 1
-    f = lambda x: (x**2 + 1) % n
-    while d == 1:
-        x = f(x)
-        y = f(f(y))
-        d = gcd(abs(x-y), n)
-    return d
+        return 2, n // 2
+    elif n % 3 == 0:
+        return 3, n // 3
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return i, n // i
+    return n, 1
 
 def main():
     if len(sys.argv) != 2:
@@ -27,8 +22,7 @@ def main():
     with open(filename, 'r') as file:
         for line in file:
             n = int(line.strip())
-            p = pollards_rho(n)
-            q = n // p
+            p, q = factorize(n)
             print(f"{n}={p}*{q}")
 
 if __name__ == "__main__":
