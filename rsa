@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+
+from math import gcd
+from random import randint
+
+def pollards_rho(n):
+    if n % 2 == 0:
+        return 2
+    x = randint(1, n-1)
+    y = x
+    c = randint(1, n-1)
+    g = 1
+    while g==1:             
+        x = ((x * x) % n + c) % n
+        y = ((y * y) % n + c) % n
+        y = ((y * y) % n + c) % n
+        g = gcd(abs(x-y), n)
+    return g
+
+def find_prime(n):
+    while True:
+        divisor = pollards_rho(n)
+        if divisor != 1 and divisor != n:
+            return divisor, n // divisor
+
+def main():
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        return
+    with open(sys.argv[1], 'r') as f:
+        n = int(f.readline().strip())
+        p, q = find_prime(n)
+        print(f"{n}={p}*{q}")
+
+
+if __name__ == "__main__":
+    main()
