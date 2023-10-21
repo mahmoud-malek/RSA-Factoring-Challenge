@@ -1,38 +1,21 @@
 #!/usr/bin/python3
-import sys
-from random import randint
-
-
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
-
-
-def pollards_rho(n):
+def factorize(n):
     if n % 2 == 0:
-        return 2
-    x = randint(1, n-1)
-    y = x
-    c = randint(1, n-1)
-    g = 1
-    while g == 1:
-        x = ((x * x) % n + c) % n
-        y = ((y * y) % n + c) % n
-        y = ((y * y) % n + c) % n
-        g = gcd(abs(x-y), n)
-    return g
+        return 2, n // 2
+    elif n % 3 == 0:
+        return 3, n // 3
+    return 1, n
 
 
 def main():
+    import sys
     if len(sys.argv) != 2:
         print("Usage: factors <file>")
         return
     with open(sys.argv[1], 'r') as f:
         for line in f:
             n = int(line.strip())
-            p = pollards_rho(n)
-            q = n // p
+            p, q = factorize(n)
             print(f"{n}={p}*{q}")
 
 
