@@ -1,22 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env bash
 
-from math import sqrt, floor
-
-def find_prime(n):
-    for i in range(floor(sqrt(n)), 0, -1):
-        if n % i == 0:
-            return i, n // i
-    return 1, n
-
-def main():
-    import sys
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
-        return
-    with open(sys.argv[1], 'r') as f:
-        n = int(f.readline().strip())
-        p, q = find_prime(n)
-        print(f"{n}={p}*{q}")
-
-if __name__ == "__main__":
-    main()
+gcc factorize.c -o a
+./a $1
